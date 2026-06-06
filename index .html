@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EXISTFACTO - Facts That Change The Way You See The World. Explore science, technology, NASA, mysteries, and psychology.">
+    <title>EXISTFACTO | Facts That Change The Way You See The World</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS Variables */
+        :root {
+            --bg-color: #050505;
+            --card-bg: #121212;
+            --primary-red: #ff0000;
+            --primary-red-hover: #cc0000;
+            --text-white: #ffffff;
+            --text-gray: #aaaaaa;
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-white);
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-red);
+            border-radius: 2px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-red);
+            color: var(--text-white);
+            font-weight: 600;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--primary-red);
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary-red);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(5, 5, 5, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--primary-red);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-red);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        #home {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            background: radial-gradient(circle at center, #1a0000 0%, var(--bg-color) 70%);
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            animation: slideUp 1s ease forwards;
+        }
+
+        .hero-tagline {
+            font-size: 1.5rem;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            font-weight: 300;
+            animation: slideUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero-btn {
+            animation: slideUp 1s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        /* About Section */
+        #about {
+            padding: 100px 20px;
+            background-color: var(--bg-color);
+        }
+
+        .about-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        .about-text strong {
+            color: var(--text-white);
+        }
+
+        /* Videos Section */
+        #videos {
+            padding: 100px 20px;
+            background-color: #0a0a0a;
+        }
+
+        .videos-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .video-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.15);
+            border-color: rgba(255, 0, 0, 0.3);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 177.77%; /* 16:9 Aspect Ratio for Shorts (9:16) */
+            height: 0;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .video-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 100px 20px;
+            background-color: var(--bg-color);
+            text-align: center;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-email {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-email i {
+            color: var(--primary-red);
+            margin-right: 10px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            min-width: 150px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .social-card i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .social-card.youtube i { color: #ff0000; }
+        .social-card.twitter i { color: #1DA1F2; }
+        .social-card.telegram i { color: #0088cc; }
+
+        .social-card:hover {
+            transform: translateY(-5px);
+            background-color: #1a1a1a;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-text {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .hero-tagline { font-size: 1.1rem; }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                flex-direction: column;
+                background-color: rgba(18, 18, 18, 0.95);
+                width: 100%;
+                padding: 40px 0;
+                transition: 0.4s;
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-links.active { right: 0; }
+            .mobile-menu-btn { display: block; }
+            
+            .nav-links .btn {
+                margin-top: 20px;
+            }
+
+            .about-container { padding: 30px 20px; }
+            .section-title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#home" class="logo">EXIST<span>FACTO</span></a>
+            <div class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#videos">Shorts</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <a href="https://youtube.com/@existfacto" target="_blank" class="btn">
+                        <i class="fab fa-youtube"></i> Subscribe
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">EXISTFACTO</h1>
+            <p class="hero-tagline">Facts That Change The Way You See The World.</p>
+            <div class="hero-btn">
+                <a href="https://youtube.com/@existfacto" target="_blank" class="btn">
+                    <i class="fab fa-youtube"></i> Explore Channel
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="reveal">
+        <div class="about-container">
+            <h2 class="section-title">About The Channel</h2>
+            <p class="about-text">Hello 🤗</p>
+            <p class="about-text"><strong>EXISTFACTO</strong> explores science, technology, curiosity, NASA, ISRO, mysteries, psychology, and fascinating facts from around the world.</p>
+            <p class="about-text">We bring you mind-blowing facts, dark mysteries, psychology tricks, science secrets, and untold truths.</p>
+            <p class="about-text" style="color: var(--text-white); font-weight: 600; margin-top: 30px;">
+                Short, powerful videos that make you think twice about reality.
+            </p>
+        </div>
+    </section>
+
+    <section id="videos">
+        <h2 class="section-title reveal">Featured Shorts</h2>
+        <div class="videos-container">
+            
+            <div class="video-card reveal">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/tmVdkTlhmF0" title="The Reality of Indian Politics #shorts" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">The Reality of Indian Politics</h3>
+                    <a href="https://youtube.com/shorts/tmVdkTlhmF0" target="_blank" style="color: var(--primary-red); font-size: 0.9rem;">Watch on YouTube <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+
+            <div class="video-card reveal" style="transition-delay: 0.2s;">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/JBCqF6JOKUU" title="India's First Hydrogen Train" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">India's First Hydrogen Train</h3>
+                    <a href="https://youtube.com/shorts/JBCqF6JOKUU" target="_blank" style="color: var(--primary-red); font-size: 0.9rem;">Watch on YouTube <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="reveal">
+        <div class="contact-container">
+            <h2 class="section-title">Connect With Us</h2>
+            
+            <a href="mailto:byakunyanaruto@gmail.com" class="contact-email">
+                <i class="fas fa-envelope"></i> byakunyanaruto@gmail.com
+            </a>
+
+            <div class="social-links">
+                <a href="https://youtube.com/@existfacto" target="_blank" class="social-card youtube">
+                    <i class="fab fa-youtube"></i>
+                    <span>YouTube</span>
+                </a>
+                <a href="https://x.com/Exist5703" target="_blank" class="social-card twitter">
+                    <i class="fab fa-x-twitter"></i>
+                    <span>X (Twitter)</span>
+                </a>
+                <a href="https://t.me/Existfacto" target="_blank" class="social-card telegram">
+                    <i class="fab fa-telegram-plane"></i>
+                    <span>Telegram</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p class="footer-text">&copy; <span id="year"></span> EXISTFACTO. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navLinks = document.getElementById('nav-links');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            // Change icon based on state
+            const icon = menuBtn.querySelector('i');
+            if(navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuBtn.querySelector('i').classList.remove('fa-times');
+                menuBtn.querySelector('i').classList.add('fa-bars');
+            });
+        });
+
+        // Scroll Reveal Animation using Intersection Observer
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Stop observing once revealed
+                }
+            });
+        }, {
+            root: null,
+            threshold: 0.15, // Trigger when 15% of element is visible
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+    </script>
+</body>
+</html>
